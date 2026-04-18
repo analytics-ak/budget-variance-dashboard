@@ -6,7 +6,7 @@
 
 Built an Excel dashboard that identifies overspending across departments and highlights where immediate cost control is required.
 
-This is not a reporting tool — it’s a decision tool.
+This is not a reporting tool — it is a decision tool.
 
 It answers one question clearly: **Where is money being wasted, and what needs to be fixed?**
 
@@ -19,82 +19,25 @@ It answers one question clearly: **Where is money being wasted, and what needs t
 
 ---
 
-## Problem Statement
+## The Short Version
 
-Most companies track budget vs actual in Excel.
+Total budget: **$45.32M**. Total actual spend: **$46.04M**. Total overspend: **$0.72M**.
 
-But in reality:
-- Data sits in spreadsheets
-- No one monitors it monthly
-- Overspending is noticed too late
+The overall 1.58% variance looks small. But inside that number, Marketing alone is overspending by 15.69% — roughly **$1.08M above its allocation** — while IT is leaving 11.58% of its budget unspent. The money exists. It is just going to the wrong places.
 
-By the time finance teams react, the damage is already done.
-
-This dashboard solves that by giving a clear, real-time view of:
-- Which departments are overspending
-- Which cost categories are driving it
-- Whether the problem is getting worse over time
-
-**Core question: Where is the company overspending, and which departments need immediate cost control?**
+This dashboard makes that visible in real time, with one-click filtering by department, region, and year.
 
 ---
 
-## Why This Matters
+## The Core Problem
 
-- This is a real FP&A problem (not a practice dataset)
-- Most companies still use Excel for budget tracking
-- A clear dashboard can prevent cost overruns before they escalate
+Most companies track budget vs actual in Excel. But data sits in spreadsheets, nobody monitors it monthly, and overspending is noticed too late. By the time finance teams react, the damage is already done.
 
-This is the kind of analysis expected from a finance or business analyst — not just charts, but decisions.
+A $0.72M total variance sounds manageable. But it hides a $1.08M Marketing overspend being partially masked by IT's underspend. Without a clear view of where the variance is concentrated, both problems go unaddressed — Marketing keeps overspending and IT's unused budget sits idle instead of being reallocated.
 
 ---
 
-## The Dataset
-
-This is a **synthetic dataset** built to simulate realistic budget behaviour over 24 months.
-
-| Detail | Info |
-|--------|------|
-| **Rows** | 2,400 |
-| **Timeframe** | Jan 2023 — Dec 2024 |
-| **Departments** | Marketing, IT, HR, Operations, Finance |
-| **Categories** | Salaries, Software, Travel, Supplies, Training |
-| **Regions** | North, South, East, West |
-| **Cost Centers** | CC-100 through CC-500 (mapped to departments) |
-
-The data has realistic patterns built in — some departments consistently overspend, some underspend, one category spikes every Q3, and one department is volatile month to month. These patterns are what make the dashboard interesting to explore.
-
----
-
-## What the Dashboard Shows
-
-### KPI Cards
-
-Five numbers at the top that give the full picture in one glance — Total Budget, Total Actual, Total Variance, Overall Variance %, and the Worst Department.
-
-### Department Variance Chart
-
-Marketing is the biggest overspender (+15.69%), while IT consistently underspends (-11.58%), indicating inefficient allocation.
-
-![Department Variance](images/department_variance.png)
-
-### Monthly Budget vs Actual Trend
-
-Spending exceeds budget consistently during Q3 across both years, indicating a recurring seasonal cost spike rather than a one-time issue.
-
-![Monthly Trend](images/monthly_trend.png)
-
-### Category Variance
-
-Bar chart breaking down variance by cost category. Travel is the biggest problem at 9.40% over budget — driven almost entirely by the Q3 seasonal spike.
-
-![Category Variance](images/category_variance.png)
-
-### Interactive Slicers
-
-Three slicers — Department, Region, and Year — that filter everything at once. Click "Marketing" and all charts, all pivots update together. Click "2024" and you see just that year.
-
-### Full Dashboard View
+## Full Dashboard View
 
 ![Dashboard Overview](images/dashboard_overview.png)
 
@@ -102,87 +45,83 @@ Three slicers — Department, Region, and Year — that filter everything at onc
 
 ## Key Findings
 
-**1. Marketing is the biggest overspender**
-15.69% over budget across 24 months. This isn't a one-time spike — it's consistent. Every single month, Marketing spends more than planned.
+### Marketing is the biggest overspender
 
-**2. IT consistently underspends**
--11.58% under budget. They're either overplanning their budget or delaying projects. Either way, that money could be allocated somewhere else.
+15.69% over budget across 24 months — approximately **$1.08M above plan**. This is not a one-time spike. It is consistent every single month across the entire dataset.
 
-**3. Travel category spikes every Q3**
-July, August, and September show 30-40% overspend in the Travel category — across all departments, not just one. This is a seasonal pattern that should be planned for, not surprised by.
+![Department Variance](images/department_variance.png)
 
-**4. HR is the most stable department**
-0.82% variance. Almost exactly on budget every month. Whatever they're doing for planning, it works.
-
-**5. Operations are unpredictable**
-3.56% overspend overall, but the month-to-month numbers swing wildly. Some months they're under, some months way over. This needs investigation.
-
----
-
-## Pivot Analysis
-
-Three pivot tables power the analysis — each one answering a different question.
-
-| Pivot | Question It Answers |
-|-------|-------------------|
-| Department Variance | Which departments are most over/under budget? |
-| Category Variance | Which cost types are driving the overspend? |
-| Monthly Variance by Year | When does overspending happen — is it seasonal? |
-
-All three pivots are connected to the same slicers, so filtering one filters all.
-
-![Pivot Analysis](images/pivot_analysis.png)
+| Department | Variance % | Status |
+|---|---|---|
+| Marketing | +15.69% | 🔴 Overspend |
+| Operations | +3.56% | 🟡 Watch |
+| HR | +0.82% | 🟢 On Budget |
+| Finance | +0.60% | 🟢 On Budget |
+| IT | -11.58% | 🔴 Underspend |
 
 ---
 
-## Excel Skills Used
+### IT is consistently leaving money on the table
 
-| Feature | Where It's Used |
-|---------|----------------|
-| **Power Query** | Loaded and transformed raw CSV — fixed data types, created Month_Year column |
-| **Named Tables** | tbl_Budget, tbl_Department, tbl_Threshold — clean formula references |
-| **Pivot Tables** | 3 pivots with calculated fields (Variance_Pct) |
-| **Pivot Charts** | Charts built using pivot tables and structured Excel ranges, fully connected to slicers |
-| **Slicers** | 3 slicers (Department, Region, Year) connected to all pivots |
-| **SUMIFS** | KPI calculations, department and category totals |
-| **XLOOKUP** | Cost centre lookups, department references |
-| **LET** | Readable variance formulas |
-| **FILTER / SORT / UNIQUE** | Dynamic Top 3 Worst Departments — auto-updates |
-| **INDEX + SORT + SEQUENCE** | Top 3 ranking using modern dynamic arrays |
-| **IF (nested)** | Status classification: Overspend (>5%), Underspend (<-5%), On Budget |
-| **Conditional Formatting** | Colour scales on variance, red for negative values |
-| **Custom Number Formats** | Currency formatting, red negatives |
-| **Data Validation** | Lookup tables for department-cost center mapping |
+-11.58% under budget. Either IT is overplanning or delaying projects. Either way, that unspent budget could be reallocated to Marketing or Operations where the pressure is highest.
 
 ---
 
-## Workbook Structure
+### Travel spikes every Q3 — without fail
 
-| Sheet | What's Inside |
-|-------|-------------|
-| **Raw Data** | 2,400 rows loaded via Power Query. Named table with calculated Variance, Variance_%, and Status columns. |
-| **Lookup Tables** | Department → Cost Center mapping. Variance threshold definitions (±5%). |
-| **Calculations** | Hidden sheet. All advanced formulas — KPIs, department summaries, Top 3 ranking, monthly trend data, category breakdowns. |
-| **Pivot Analysis** | 3 pivot tables with calculated fields. Connected to slicers. |
-| **Dashboard** | KPI cards, 3 pivot charts, 3 slicers. The main deliverable. |
-| **Insights** | 5 decision-focused bullets — no explanations, just actions. |
+July, August, and September show 30–40% overspend in Travel across all departments — not just one. At 9.40% over budget overall, Travel is the single most overspent cost category.
 
----
+This is a seasonal pattern that should be planned for, not surprised by every year.
 
-## Insights (Decisions Only)
+![Category Variance](images/category_variance.png)
 
-- Marketing consistently overspends — review budget allocation and control measures
-- IT underutilises the budget — possible over-planning or delayed execution
-- Travel category spikes in Q3 — consider seasonal budget adjustment
-- HR budget is stable — maintain current planning approach
-- Operations show high month-to-month variance — investigate underlying causes
+| Category | Variance % |
+|---|---|
+| Travel | +9.40% |
+| Training | +1.44% |
+| Salaries | +1.01% |
+| Supplies | +0.55% |
+| Software | -0.34% |
 
 ---
 
-## Variance Rules
+### Q3 is where the budget breaks
+
+The monthly trend shows spending tracking close to budget from January through June — then a sharp spike in July through September — then a return to normal in October.
+
+This is not random variation. It is a structural pattern that repeats across both years in the dataset.
+
+![Monthly Trend](images/monthly_trend.png)
+
+---
+
+### HR is the benchmark for good planning
+
+0.82% variance. Almost exactly on budget every single month. Whatever HR is doing for planning and cost control is working — and it should be the reference model for other departments.
+
+---
+
+### Operations needs investigation
+
+3.56% overspend overall, but the month-to-month numbers swing unpredictably. Some months under, some months well over. Unlike Marketing which is consistently over, Operations is volatile — which points to a different kind of problem.
+
+---
+
+## What Should Be Done
+
+| Problem | Action | Expected Impact |
+|---|---|---|
+| Marketing overspending by ~$1.08M | Monthly spend review against budget with hard approval required above threshold | Catches overruns before month-end instead of after |
+| IT leaving 11.58% unspent | Mid-year budget reallocation from IT to high-pressure departments | Puts idle budget to work where it is actually needed |
+| Travel spiking every Q3 | Build Q3 travel spike into the annual budget as a planned line item | Eliminates surprise overspend — it is predictable, plan for it |
+| Operations volatile month to month | Root cause investigation — identify which cost centers are driving the swings | Determines whether this is a planning problem or an execution problem |
+
+---
+
+## Variance Rules Used
 
 | Status | Condition | Action |
-|--------|-----------|--------|
+|---|---|---|
 | **Overspend** | Variance % > +5% | Investigate and control |
 | **On Budget** | Between -5% and +5% | No action needed |
 | **Underspend** | Variance % < -5% | Review allocation |
@@ -191,27 +130,90 @@ The 5% threshold matches how finance teams actually operate. Most companies flag
 
 ---
 
-## Business Impact
+## What the Dashboard Contains
 
-If used in a real company, this dashboard would:
+### KPI Cards
+Five numbers at the top — Total Budget, Total Actual, Total Variance ($), Variance %, and Worst Department. Full picture in one glance.
 
-- Identify overspending early (before month-end)
-- Help reallocate unused budget (e.g., IT underspend)
-- Highlight seasonal cost spikes (e.g., Travel in Q3)
-- Improve financial planning accuracy
+### Department Variance Chart
+Horizontal bar chart showing which departments are over and under budget. Colour coded — green for overspend, red for underspend.
 
-This turns raw budget data into actionable decisions.
+### Monthly Variance Trend
+Line chart showing how variance moves across all 12 months. The Q3 spike is immediately visible.
+
+### Category Variance Chart
+Bar chart breaking overspend by cost category. Travel stands out instantly.
+
+### Interactive Slicers
+Three slicers — Department, Region, Year — connected to all pivots and charts simultaneously. Click Marketing, everything filters. Click 2024, everything updates.
 
 ---
 
-## Why This Project Stands Out
+## Pivot Analysis
 
-- Not just charts — clear decision-making
-- Designed for real finance use (not an academic dataset)
-- Handles dynamic filtering with consistent logic
-- Focused on business impact, not just visuals
+Three pivot tables power the analysis — each answering a different business question.
 
-Most Excel dashboards show data. This one explains what to do with it.
+| Pivot | Question It Answers |
+|---|---|
+| Department Variance | Which departments are most over or under budget? |
+| Category Variance | Which cost types are driving the overspend? |
+| Monthly Variance by Year | When does overspending happen — is it seasonal? |
+
+All three pivots connect to the same slicers so filtering one filters all.
+
+![Pivot Analysis](images/pivot_analysis.png)
+
+---
+
+## Excel Skills Used
+
+| Feature | Where It Is Used |
+|---|---|
+| **Power Query** | Loaded and transformed raw CSV — fixed data types, created Month_Year column |
+| **Named Tables** | tbl_Budget, tbl_Department, tbl_Threshold — clean formula references |
+| **Pivot Tables** | 3 pivots with calculated fields (Variance_Pct) |
+| **Pivot Charts** | Charts built on pivot tables, fully connected to slicers |
+| **Slicers** | 3 slicers connected to all pivots simultaneously |
+| **SUMIFS** | KPI calculations, department and category totals |
+| **XLOOKUP** | Cost centre lookups, department references |
+| **LET** | Readable variance formulas |
+| **FILTER / SORT / UNIQUE** | Dynamic Top 3 Worst Departments — auto-updates |
+| **INDEX + SORT + SEQUENCE** | Top 3 ranking using dynamic arrays |
+| **IF (nested)** | Status classification: Overspend / On Budget / Underspend |
+| **Conditional Formatting** | Colour scales on variance, red for negatives |
+| **Custom Number Formats** | Currency formatting, red negatives |
+| **Data Validation** | Lookup tables for department-cost centre mapping |
+
+---
+
+## Workbook Structure
+
+| Sheet | What Is Inside |
+|---|---|
+| **Raw Data** | 2,400 rows loaded via Power Query. Named table with Variance, Variance_%, and Status columns. |
+| **Lookup Tables** | Department to Cost Centre mapping. Variance threshold definitions (±5%). |
+| **Calculations** | All advanced formulas — KPIs, department summaries, Top 3 ranking, monthly trend, category breakdowns. |
+| **Pivot Analysis** | 3 pivot tables with calculated fields, connected to slicers. |
+| **Dashboard** | KPI cards, 3 pivot charts, 3 slicers. The main deliverable. |
+| **Insights** | 5 decision-focused bullets — no explanations, just actions. |
+
+---
+
+## Dataset
+
+Synthetic dataset built to simulate realistic budget behaviour over 24 months.
+
+| Detail | Info |
+|---|---|
+| **Rows** | 2,400 |
+| **Timeframe** | Jan 2023 – Dec 2024 |
+| **Departments** | Marketing, IT, HR, Operations, Finance |
+| **Categories** | Salaries, Software, Travel, Supplies, Training |
+| **Regions** | North, South, East, West |
+| **Total Budget** | $45.32M |
+| **Total Actual** | $46.04M |
+
+The data has realistic patterns built in — some departments consistently overspend, some underspend, Travel spikes every Q3, and Operations is volatile month to month.
 
 ---
 
@@ -220,9 +222,9 @@ Most Excel dashboards show data. This one explains what to do with it.
 ```
 budget-variance-dashboard/
 │
-├── budget_variance_dashboard.xlsx         # The deliverable (full dashboard)
-├── budget_data.csv                        # Synthetic dataset (2,400 rows)
-├── README.md
+├── budget_variance_dashboard.xlsx  ← The deliverable (full dashboard)
+├── budget_data.csv                 ← Synthetic dataset (2,400 rows)
+├── README.md                       ← You are reading this
 │
 └── images/
     ├── dashboard_overview.png
@@ -240,30 +242,26 @@ budget-variance-dashboard/
    ```bash
    git clone https://github.com/analytics-ak/budget-variance-dashboard.git
    ```
-
 2. Open `budget_variance_dashboard.xlsx` in Excel
-
-3. If prompted, click **Enable Content** (for data connections)
-
+3. If prompted, click **Enable Content** for data connections
 4. Use the slicers on the Dashboard sheet to filter by Department, Region, or Year
-
 5. All charts and pivots update together when you change a filter
-
-6. Check the Insights sheet for the key decisions
+6. Check the Insights sheet for key decisions
 
 ---
 
-## Profile
+## Conclusion
 
-* 🔗 **LinkedIn:** [View My Profile](https://www.linkedin.com/in/analytics-ashish/)
-* 💻 **GitHub Repository:** [Budget Variance Dashboard](https://github.com/analytics-ak/budget-variance-dashboard)
+The overall 1.58% variance looks fine on the surface. It is not.
 
-<br>
+Marketing is $1.08M over plan. IT has significant unspent budget sitting idle. Travel overspends every Q3 without fail. These are not surprises — they are predictable, recurring patterns that a monthly monitoring process would catch before they compound.
+
+This dashboard makes those patterns visible at a glance, so decisions happen before the damage is done — not after.
+
+---
 
 ## Author
 
 **Ashish Kumar Dongre**
-Data Analyst
 
-- Excel | Power Query | Pivot Tables | Dashboard Design
-- Focus: **Turning business data into clear, actionable decisions**
+🔗 [LinkedIn](https://www.linkedin.com/in/analytics-ashish/) &nbsp;|&nbsp; 💻 [GitHub](https://github.com/analytics-ak/budget-variance-dashboard)
