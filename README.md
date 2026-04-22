@@ -264,4 +264,4 @@ This dashboard makes those patterns visible at a glance, so decisions happen bef
 
 **Ashish Kumar Dongre**
 
-🔗 [LinkedIn](www.linkedin.com/in/ashish-kumar-dongre-742a6217b) &nbsp;|&nbsp; 💻 [GitHub](https://github.com/analytics-ak/budget-variance-dashboard)
+🔗 [LinkedIn](https://www.linkedin.com/in/ashish-kumar-dongre-742a6217b/) &nbsp;|&nbsp; 💻 [GitHub](https://github.com/analytics-ak/budget-variance-dashboard)
