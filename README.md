@@ -254,7 +254,7 @@ budget-variance-dashboard/
 
 The overall 1.58% variance looks fine on the surface. It is not.
 
-Marketing is $1.08M over plan. IT has significant unspent budget sitting idle. Travel overspends every Q3 without fail. These are not surprises — they are predictable, recurring patterns that a monthly monitoring process would catch before they compound.
+Marketing is $1.08M over plan. IT has a significant unspent budget sitting idle. Travel overspends every Q3 without fail. These are not surprises — they are predictable, recurring patterns that a monthly monitoring process would catch before they compound.
 
 This dashboard makes those patterns visible at a glance, so decisions happen before the damage is done — not after.
 
@@ -264,4 +264,4 @@ This dashboard makes those patterns visible at a glance, so decisions happen bef
 
 **Ashish Kumar Dongre**
 
-🔗 [LinkedIn](https://www.linkedin.com/in/analytics-ashish/) &nbsp;|&nbsp; 💻 [GitHub](https://github.com/analytics-ak/budget-variance-dashboard)
+🔗 [LinkedIn](www.linkedin.com/in/ashish-kumar-dongre-742a6217b) &nbsp;|&nbsp; 💻 [GitHub](https://github.com/analytics-ak/budget-variance-dashboard)
